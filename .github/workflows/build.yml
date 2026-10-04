@@ -1,4 +1,4 @@
-name: Build
+name: Construire APK OpenTV
 
 on:
   push:
@@ -15,38 +15,39 @@ concurrency:
 
 jobs:
   build:
-    name: Test and assemble
+    name: Test et compilation APK
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Récupérer le projet
+        uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Installer Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Gradle
+      - name: Installer Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Configurer Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Unit tests
+      - name: Donner les permissions à Gradle
+        run: chmod +x ./gradlew
+
+      - name: Tests
         run: ./gradlew test --stacktrace
 
-      - name: Assemble debug APK
+      - name: Construire l'APK
         run: ./gradlew assembleDebug --stacktrace
 
-      - name: Upload debug APK
+      - name: Sauvegarder l'APK
         uses: actions/upload-artifact@v4
         with:
-          name: opentv-debug-apk
+          name: OpenTV-Dkalion-APK
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
 
-      - name: Upload test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: app/build/reports/tests/
-          if-no-files-found: ignore
+      - name:
