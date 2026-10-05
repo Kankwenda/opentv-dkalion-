@@ -1,0 +1,12 @@
+{
+  "playlists": [
+    {
+      "name": "Toutes les chaînes",
+      "url": "https://iptv-org.github.io/iptv/index.m3u"
+    },
+    {
+      "name": "Par pays",
+      "url": "https://iptv-org.github.io/iptv/index.country.m3u"
+    }
+  ]
+}
