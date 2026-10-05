@@ -16,61 +16,169 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-/**
- * A deliberately dark, low-chroma palette.
+/*
+ * DKALION — Interface TV / Mobile
  *
- * This is a living-room app: it is looked at in a dark room, from three metres away, often
- * for hours. Bright surfaces and saturated accents that read well on a phone in daylight are
- * actively unpleasant on a 55" panel at night, so everything here is anchored near-black with
- * a single restrained accent used only for focus and selection.
+ * Palette :
+ * - Noir profond pour le fond
+ * - Bleu électrique pour l'action principale
+ * - Bleu lumineux pour le focus Android TV
+ * - Blanc et gris clair pour une excellente lisibilité
  */
-private val Accent = Color(0xFF7C93FF)
-private val AccentDim = Color(0xFF4B5DB8)
+
+// Couleurs principales
+private val DkalionBlue = Color(0xFF1677FF)
+private val DkalionBlueBright = Color(0xFF3D8BFF)
+private val DkalionBlueDark = Color(0xFF0D47A1)
+
+// Fonds
+private val DkalionBlack = Color(0xFF050608)
+private val DkalionSurface = Color(0xFF0B0E14)
+private val DkalionSurfaceVariant = Color(0xFF141923)
+
+// Textes
+private val DkalionWhite = Color(0xFFF5F7FA)
+private val DkalionGray = Color(0xFFB7BFCC)
+
+// Bordures
+private val DkalionOutline = Color(0xFF293241)
+
+// Erreur
+private val DkalionError = Color(0xFFFF5252)
 
 private val DarkScheme = darkColorScheme(
-    primary = Accent,
-    onPrimary = Color(0xFF0A0C14),
-    primaryContainer = AccentDim,
-    onPrimaryContainer = Color(0xFFE6EAFF),
-    secondary = Color(0xFF9AA3C0),
-    background = Color(0xFF07080C),
-    onBackground = Color(0xFFE8EAF0),
-    surface = Color(0xFF0D0F16),
-    onSurface = Color(0xFFE8EAF0),
-    surfaceVariant = Color(0xFF171A24),
-    onSurfaceVariant = Color(0xFFA8AEC0),
-    outline = Color(0xFF2A2F3D),
-    error = Color(0xFFFF6B6B),
-    onError = Color(0xFF1A0505),
+    primary = DkalionBlue,
+    onPrimary = Color.White,
+
+    primaryContainer = DkalionBlueDark,
+    onPrimaryContainer = Color(0xFFE4EEFF),
+
+    secondary = DkalionBlueBright,
+    onSecondary = Color.White,
+
+    secondaryContainer = Color(0xFF12315E),
+    onSecondaryContainer = Color(0xFFD8E7FF),
+
+    background = DkalionBlack,
+    onBackground = DkalionWhite,
+
+    surface = DkalionSurface,
+    onSurface = DkalionWhite,
+
+    surfaceVariant = DkalionSurfaceVariant,
+    onSurfaceVariant = DkalionGray,
+
+    outline = DkalionOutline,
+
+    error = DkalionError,
+    onError = Color.White,
 )
 
-/**
- * Light mode for anyone who wants it. By default TV boxes stay dark (a white living-room
- * screen at night is nobody's friend) — that default lives at the call site, so a user who
- * explicitly picks Light in settings gets it on any device.
+/*
+ * Mode clair conservé pour les utilisateurs qui le sélectionnent
+ * explicitement dans les paramètres.
  */
 private val LightScheme = lightColorScheme(
-    primary = Color(0xFF3B4FCC),
+    primary = Color(0xFF075FE8),
     onPrimary = Color.White,
-    background = Color(0xFFFBFBFE),
-    onBackground = Color(0xFF13141A),
+
+    primaryContainer = Color(0xFFD9E7FF),
+    onPrimaryContainer = Color(0xFF001A41),
+
+    secondary = Color(0xFF2869C7),
+    onSecondary = Color.White,
+
+    background = Color(0xFFF7F9FC),
+    onBackground = Color(0xFF10141B),
+
     surface = Color.White,
-    onSurface = Color(0xFF13141A),
-    surfaceVariant = Color(0xFFEEF0F6),
-    onSurfaceVariant = Color(0xFF4A4F60),
-    outline = Color(0xFFD3D7E2),
+    onSurface = Color(0xFF10141B),
+
+    surfaceVariant = Color(0xFFE9EDF4),
+    onSurfaceVariant = Color(0xFF444B58),
+
+    outline = Color(0xFFC4CBD6),
+
+    error = Color(0xFFBA1A1A),
+    onError = Color.White,
 )
 
-/** Scaled up from the Material defaults: ten-foot viewing needs bigger text than a phone. */
+/*
+ * Typographie adaptée à Android TV et aux téléphones.
+ * Les titres sont légèrement plus grands pour une lecture à distance.
+ */
 private val OpenTvTypography = Typography(
-    displaySmall = TextStyle(fontSize = 34.sp, fontWeight = FontWeight.SemiBold),
-    headlineMedium = TextStyle(fontSize = 26.sp, fontWeight = FontWeight.SemiBold),
-    headlineSmall = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.SemiBold),
-    titleLarge = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Medium),
-    titleMedium = TextStyle(fontSize = 17.sp, fontWeight = FontWeight.Medium),
-    bodyLarge = TextStyle(fontSize = 16.sp),
-    bodyMedium = TextStyle(fontSize = 14.sp),
-    labelLarge = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Medium),
+    displayLarge = TextStyle(
+        fontSize = 38.sp,
+        fontWeight = FontWeight.Bold
+    ),
+
+    displayMedium = TextStyle(
+        fontSize = 34.sp,
+        fontWeight = FontWeight.Bold
+    ),
+
+    displaySmall = TextStyle(
+        fontSize = 30.sp,
+        fontWeight = FontWeight.SemiBold
+    ),
+
+    headlineLarge = TextStyle(
+        fontSize = 28.sp,
+        fontWeight = FontWeight.Bold
+    ),
+
+    headlineMedium = TextStyle(
+        fontSize = 24.sp,
+        fontWeight = FontWeight.SemiBold
+    ),
+
+    headlineSmall = TextStyle(
+        fontSize = 21.sp,
+        fontWeight = FontWeight.SemiBold
+    ),
+
+    titleLarge = TextStyle(
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Medium
+    ),
+
+    titleMedium = TextStyle(
+        fontSize = 17.sp,
+        fontWeight = FontWeight.Medium
+    ),
+
+    titleSmall = TextStyle(
+        fontSize = 15.sp,
+        fontWeight = FontWeight.Medium
+    ),
+
+    bodyLarge = TextStyle(
+        fontSize = 16.sp
+    ),
+
+    bodyMedium = TextStyle(
+        fontSize = 14.sp
+    ),
+
+    bodySmall = TextStyle(
+        fontSize = 12.sp
+    ),
+
+    labelLarge = TextStyle(
+        fontSize = 14.sp,
+        fontWeight = FontWeight.SemiBold
+    ),
+
+    labelMedium = TextStyle(
+        fontSize = 13.sp,
+        fontWeight = FontWeight.Medium
+    ),
+
+    labelSmall = TextStyle(
+        fontSize = 11.sp,
+        fontWeight = FontWeight.Medium
+    )
 )
 
 @Composable
@@ -79,7 +187,11 @@ fun OpenTvTheme(
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
-        colorScheme = if (darkTheme) DarkScheme else LightScheme,
+        colorScheme = if (darkTheme) {
+            DarkScheme
+        } else {
+            LightScheme
+        },
         typography = OpenTvTypography,
         content = content,
     )
