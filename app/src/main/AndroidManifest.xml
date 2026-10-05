@@ -58,7 +58,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.openTV"
+        android:theme="@style/Theme.OpenTV"
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
 
